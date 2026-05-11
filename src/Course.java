@@ -19,17 +19,29 @@ public class Course {
     }
 
     public double calculateGrade() {
-        double totalWeight = 0;
-        double currentTotal = 0;
-        for (Assessment a : assessments) {
-            currentTotal += a.getWeightedPercentage();
-            totalWeight += a.getWeight();
-        }
+        double totalWeight = getTotalWeight();
+        double currentTotal = getWeightedSum();
         if (totalWeight > 0) {
             return (currentTotal / totalWeight) * 100;
         } else {
             return 0;
         }
+    }
+
+    public double getWeightedSum() {
+        double sum = 0;
+        for (Assessment a : assessments) {
+            sum += a.getWeightedPercentage();
+        }
+        return sum;
+    }
+
+    public double getTotalWeight() {
+        double total = 0;
+        for (Assessment a : assessments) {
+            total += a.getWeight();
+        }
+        return total;
     }
 
     public String getName() { return name; }
