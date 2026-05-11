@@ -9,6 +9,7 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        courses = DataHandler.load();
         System.out.println("--- Arch Academic Command Center: Grade Tracker ---");
         boolean running = true;
 
@@ -16,7 +17,7 @@ public class Main {
             System.out.println("\n1. Add Course");
             System.out.println("2. Add Assessment to Course");
             System.out.println("3. View Grades");
-            System.out.println("4. Exit");
+            System.out.println("4. Save & Exit");
             System.out.print("> ");
 
             String choice = scanner.nextLine();
@@ -32,6 +33,7 @@ public class Main {
                     viewGrades();
                     break;
                 case "4":
+                    DataHandler.save(courses);
                     running = false;
                     break;
                 default:
